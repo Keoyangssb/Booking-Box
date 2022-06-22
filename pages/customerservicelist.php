@@ -262,7 +262,7 @@
       }
 
       $scope.ContentPage = function(itemid){  
-        
+        location.href = "customerserviceview.php?id=" + itemid;
       }
 
  });  
