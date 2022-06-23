@@ -18,7 +18,7 @@
 					type: "success"
 					},
 					function () {
-					window.location.href = 'donate.php';
+					window.location.href = 'hotelview.php';
 				});
 		</script>
 		
