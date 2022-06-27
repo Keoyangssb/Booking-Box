@@ -6,6 +6,7 @@ include('/var/www/html/config.php');
       $status = $data['action'];
       $i = 0;
       $itemid = 0;
+      $updateitemid = 0;
 
       if($status == "add"){
         $query = "select max(itemid) as xid from tblcustomerservice";
@@ -18,6 +19,7 @@ include('/var/www/html/config.php');
          }
       }
       
+      $updateitemid = $data['itemid'];
       $hotelnamelao = $data['itemnamela'];
       $hotelnameeng = $data['itemnameen'];
       $detailslao = $data['detailsla']; 
@@ -37,8 +39,7 @@ include('/var/www/html/config.php');
              echo 'Error';  
         }  
       }else{
-        $itemid = $data['itemid'];
-        $query = "UPDATE tblcustomerservice SET itemnamela='$hotelnamelao',itemnameen='$hotelnameeng',detailsla='$detailslao',detailsen='$detailseng',tel1='$tel1',img='' WHERE itemid=".$itemid;  
+        $query = "UPDATE tblcustomerservice SET itemnamela='$hotelnamelao',itemnameen='$hotelnameeng',detailsla='$detailslao',detailsen='$detailseng',tel1='$tel1',img='' WHERE itemid=".$updateitemid;  
         if(mysqli_query($Dbobj->getdbconnect(), $query))  
         {
             echo 'Update data complete.'; 

@@ -255,6 +255,8 @@
             return;  
           }
 
+          $scope.ndata.action = "edit";
+
           $http({ method  : 'POST',
           url :'pages/addeditcustomerservice.php',
           data : $scope.ndata,
@@ -264,12 +266,6 @@
               window.location.reload();
           });
         } 
-
-        $scope.DelImage = function(index){  
-          if (confirm("Do you want to delete?") == true) {
-              $scope.ndata.images.splice(index, 1);
-          }
-        }
 
         $scope.DeleteHotel = function(id){
           if (confirm("Do you want to delete data?.") == false) {
