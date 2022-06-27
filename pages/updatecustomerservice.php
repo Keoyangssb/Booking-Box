@@ -15,6 +15,7 @@ include('/var/www/html/config.php');
       $query = ""; 
 
       $query = "UPDATE tblcustomerservice SET itemnamela='$hotelnamelao',itemnameen='$hotelnameeng',detailsla='$detailslao',detailsen='$detailseng',tel1='$tel1',img='' WHERE itemid=".$itemid;  
+      $Dbobj = new DbConnection(); 
         if(mysqli_query($Dbobj->getdbconnect(), $query))  
         {
             echo 'Update data complete.'; 
