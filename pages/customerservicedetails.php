@@ -252,13 +252,13 @@
           }
 
           $scope.ndata.action = "edit";
-          alert($scope.ndata.itemid);
+
           if (confirm("Do you want to update?") == false) {
             return;                    
           }
 
           $http({ method  : 'POST',
-          url :'pages/addeditcustomerservice.php',
+          url :'pages/updatecustomerservice.php',
           data : $scope.ndata,
           headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
           }) .success(function(data) {
