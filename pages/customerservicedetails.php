@@ -225,9 +225,6 @@
         }
 
         $scope.updateData = function() {
-          if (confirm("Do you want to update?") == false) {
-            return;                    
-          }
           if($scope.ndata != null){
             if($scope.ndata.itemnamela == '' || $scope.ndata.itemnamela == undefined){
               alert('Please enter name in Lao.');
@@ -238,24 +235,27 @@
               return;
             }
             if($scope.ndata.detailsla == '' || $scope.ndata.detailsla == 'undefined'){
-                      alert('Please enter address in Lao.');
-                      return;
-                    }  
-                    if($scope.ndata.detailsen == '' || $scope.ndata.detailsen == 'undefined'){
-                      alert('Please enter address in English.');
-                      return;
-                    } 
-                    if($scope.ndata.tel1 == '' || $scope.ndata.tel1 == 'undefined'){
-                      alert('Please enter tel.');
-                      return;
-                    }
-            
+               alert('Please enter address in Lao.');
+               return;
+            }  
+            if($scope.ndata.detailsen == '' || $scope.ndata.detailsen == 'undefined'){
+              alert('Please enter address in English.');
+              return;
+            } 
+            if($scope.ndata.tel1 == '' || $scope.ndata.tel1 == 'undefined'){
+              alert('Please enter tel.');
+              return;
+            }
           }else{
             alert('Please enter data.');
             return;  
           }
 
           $scope.ndata.action = "edit";
+          alert($scope.ndata.itemid);
+          if (confirm("Do you want to update?") == false) {
+            return;                    
+          }
 
           $http({ method  : 'POST',
           url :'pages/addeditcustomerservice.php',
