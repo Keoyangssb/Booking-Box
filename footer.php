@@ -15,7 +15,7 @@
 				<ul>
 					<li><a href="aboutus.php" style="color: white;">ກ່ຽວກັບ Booking Box</a></li>
 					<li><a href="customerserviceview.php" style="color: white;">ສູນບໍລິການລູກຄ້າ</a></li>
-					<li><a href="#" style="color: white;">ສູນບໍລິການຄູ່ຄ້າ</a></li>
+					<li><a href="partnerserviceview.php" style="color: white;">ສູນບໍລິການຄູ່ຄ້າ</a></li>
 				</ul>
   			</div>
   			<div class="col-md-4">

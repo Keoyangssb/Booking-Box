@@ -66,5 +66,7 @@
 		"namelao" => "Name in Lao",
 		"nameeng" => "Name in English",
 		"tel" => "Tel",
+		"partnerservice" => "Partner Service",
+		"addpartnerservice" => "Add Partner Service",
 	);
 ?>
