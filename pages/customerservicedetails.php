@@ -276,7 +276,7 @@
             return;                    
           }
           $http({ method  : 'POST',
-          url :'pages/deletecustomerservice.php',
+          url :'pages/deletecustomerservice2.php',
           data : {'myid': id},
           headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
           }).success(function(data){ 
