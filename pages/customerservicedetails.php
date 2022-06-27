@@ -276,12 +276,12 @@
             return;                    
           }
           $http({ method  : 'POST',
-          url :'pages/deletecustomerservice2.php',
+          url :'pages/deletecustomerservice.php',
           data : {'myid': id},
           headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
           }).success(function(data){ 
             alert(data);
-            window.location.href = './index.php';
+            window.location.href = './customerserviceview.php';
           });  
         }
 

@@ -38,7 +38,7 @@ include('/var/www/html/config.php');
         }  
       }else{
         $itemid = $data['itemid'];
-        $query = "UPDATE tblcustomerservice SET itemnamela='$hotelnamelao',itemnameen='$hotelnameeng',detailsla='$detailslao',detailsen='$detailseng',tel1='$tel1' WHERE itemid=".$itemid;  
+        $query = "UPDATE tblcustomerservice SET itemnamela='$hotelnamelao',itemnameen='$hotelnameeng',detailsla='$detailslao',detailsen='$detailseng',tel1='$tel1',img='' WHERE itemid=".$itemid;  
         if(mysqli_query($Dbobj->getdbconnect(), $query))  
         {
             echo 'Update data complete.'; 
