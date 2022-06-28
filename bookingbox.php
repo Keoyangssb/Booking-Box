@@ -23,19 +23,19 @@
     $params['locale'] = 'en';
     $params['transaction_type'] = 'authorization';
     $params['reference_number'] = (int)(rand(0, 999999));
-    $params['currency'] = 'lak';
+    $params['currency'] = $_GET['currency'];
 
     $params['device_fingerprint_id'] = $sid;
 
     $params['amount'] = $_GET['amount'];
-    $params['bill_to_address_country'] = "LA";
+    $params['bill_to_address_country'] = $_GET['country'];
     $params['bill_to_forename'] = $_GET['firstname'];
     $params['bill_to_surname'] = $_GET['lastname'];
-    $params['bill_to_email'] = "test@bcel.com.la";
-    $params['bill_to_phone'] = "2055551111";
-    $params['bill_to_address_city'] = "Vientiane";
-    $params['bill_to_address_line1'] = "1/23 Somewhere";
-    $params['bill_to_address_postal_code'] = "01000";
+    $params['bill_to_email'] = $_GET['email'];
+    $params['bill_to_phone'] = $_GET['tel'];
+    $params['bill_to_address_city'] = $_GET['city'];
+    $params['bill_to_address_line1'] = $_GET['address'];
+    $params['bill_to_address_postal_code'] = $_GET['postalcode'];
     $params['merchant_secure_data1'] = "special message 1";
     $params['merchant_secure_data2'] = "special data 2";
     $params['merchant_secure_data3'] = "special data 3";
@@ -131,10 +131,10 @@
                     <div>
                         <h3>Billing Information</h3>
                         <div>
-                            <p><?=$params['bill_to_forename']?> <?=$params['bill_to_surname']?></p>
-                            <p><?=$params['bill_to_address_line1']?>, <?=$params['bill_to_address_city']?>, <?=$params['bill_to_address_postal_code']?> <?=$params['bill_to_address_country']?></p>
-                            <p><?=$params['bill_to_phone']?></p>
-                            <p><?=$params['bill_to_email']?></p>
+                            <p>Full name: <?=$params['bill_to_forename']?> <?=$params['bill_to_surname']?></p>
+                            
+                            <p>Tel: <?=$params['bill_to_phone']?></p>
+                            
                         </div>
                     </div>
                     <div class="amount">
