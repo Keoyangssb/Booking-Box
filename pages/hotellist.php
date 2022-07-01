@@ -217,7 +217,7 @@
       $scope.selectdata = function(){ 
         var sessionLangId = "<?php echo $_SESSION['langid']; ?>"; 
           $http({ method  : 'POST',
-          url :'http://polysolutions.la/pages/gethotellist.php',
+          url :'pages/gethotellist.php',
           data : {'myid': 0, 'langid': sessionLangId},
           headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
           }).success(function(data){

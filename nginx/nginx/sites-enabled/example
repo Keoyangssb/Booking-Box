@@ -1,5 +1,15 @@
 server {
-        listen 80;
+	#listen 80 ssl;
+	listen 443 ssl;
+
+	ssl    on;
+	ssl_certificate    /etc/ssl/ssl-bundle.crt;
+	ssl_certificate_key    /etc/ssl/polysolutions.key;
+
+	ssl_stapling on;
+
+	ssl_stapling_verify on;
+
         server_name polysolutions.la;
         root /var/www/html;
         index index.php;
