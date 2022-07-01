@@ -12,14 +12,24 @@
 	</head>
 	<body class="bg-dark">
 		<script>
+			myFunction();
 				sweetAlert(
 					{
 					title: "Payment Cancelled.",
-					type: "error"
+					type: "error",
+					showConfirmButton: false
 					},
-					function () {
-					window.location.href = 'hotelview.php';
-				});
+				);
+			
+				function myFunction() {
+					const url = new URL(window.location.href);
+					const urlParams = new URLSearchParams(url.search);
+					if(urlParams == "" || urlParams == null){
+						url.searchParams.set('reason_code', '00');
+  						location.replace(url)
+					}
+				}	
+				
 		</script>
 		
 	</body>

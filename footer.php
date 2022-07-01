@@ -21,7 +21,7 @@
   			<div class="col-md-4">
 			  <ul>
 				<li><a href="Privacy Policy.pdf" style="color: white;">ຂໍ້ຕົກລົງ ແລະ ເງື່ອນໄຂ</a></li>
-				<li><a href="#" style="color: white;">ສູນຂໍ້ມູນຂ່າວສານ</a></li>
+				<li><a href="newsview.php" style="color: white;">ສູນຂໍ້ມູນຂ່າວສານ</a></li>
 				<li><a href="contact.php" style="color: white;">ຕິດຕໍ່ບໍລິສັດ</a></li>
 			  </ul>
   			</div>

@@ -68,5 +68,6 @@
 		"tel" => "Tel",
 		"partnerservice" => "Partner Service",
 		"addpartnerservice" => "Add Partner Service",
+		"news" => "News",
 	);
 ?>

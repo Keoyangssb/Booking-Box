@@ -1,4 +1,5 @@
 <?php
+
     function signParams($params, $secretKey){
         $dataToSign = array();
         $signedFieldNames = explode(",",$params["signed_field_names"]);
@@ -50,8 +51,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<title>Payment Bill</title>
 	<style>
         *{
@@ -65,8 +67,8 @@
             background-color: #eee;
 		}
 		.container{
-			width: 40vw;
-			height: auto;
+			width: 100%;
+			height: 100%;
 			margin: auto;
 			background-color: #fff;
             border: 1px solid #ddd;
@@ -118,6 +120,11 @@
         }
 	</style>
 </head>
+
+<?php 
+
+
+?>
 <body>
     <div class="container">
         <div class="title">
@@ -132,9 +139,7 @@
                         <h3>Billing Information</h3>
                         <div>
                             <p>Full name: <?=$params['bill_to_forename']?> <?=$params['bill_to_surname']?></p>
-                            
                             <p>Tel: <?=$params['bill_to_phone']?></p>
-                            
                         </div>
                     </div>
                     <div class="amount">
