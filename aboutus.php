@@ -12,5 +12,6 @@ $_SESSION["contact"] = "";
 
 include 'header.php';
 include 'pages/aboutuslist.php';
+//include 'pages/about-us.html';
 include 'footer.php';
 ?>

@@ -12,7 +12,7 @@
 	</head>
 	<body class="bg-dark">
 		<script>
-			myFunction();
+			//myFunction();
 				sweetAlert(
 					{
 					title: "Payment Cancelled.",

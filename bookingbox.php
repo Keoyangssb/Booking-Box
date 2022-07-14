@@ -1,5 +1,4 @@
 <?php
-
     function signParams($params, $secretKey){
         $dataToSign = array();
         $signedFieldNames = explode(",",$params["signed_field_names"]);
@@ -23,7 +22,7 @@
     $params['signed_date_time'] = gmdate("Y-m-d\TH:i:s\Z");
     $params['locale'] = 'en';
     $params['transaction_type'] = 'authorization';
-    $params['reference_number'] = (int)(rand(0, 999999));
+    $params['reference_number'] = $_GET['orderid'] . "," .$_GET['ordertypeid']; //(int)(rand(0, 999999));
     $params['currency'] = $_GET['currency'];
 
     $params['device_fingerprint_id'] = $sid;
@@ -34,12 +33,15 @@
     $params['bill_to_surname'] = $_GET['lastname'];
     $params['bill_to_email'] = $_GET['email'];
     $params['bill_to_phone'] = $_GET['tel'];
-    $params['bill_to_address_city'] = $_GET['city'];
-    $params['bill_to_address_line1'] = $_GET['address'];
-    $params['bill_to_address_postal_code'] = $_GET['postalcode'];
+    $params['bill_to_address_city'] = "";
+    $params['bill_to_address_line1'] = "";
+    $params['bill_to_address_postal_code'] = "";
     $params['merchant_secure_data1'] = "special message 1";
     $params['merchant_secure_data2'] = "special data 2";
     $params['merchant_secure_data3'] = "special data 3";
+
+    //setcookie("orderid", $_GET['orderid'], time() + (86400 * 30));
+    //setcookie("ordertypeid", $_GET['ordertypeid'], time() + (86400 * 30));
 
     $params['signed_field_names'] = '';
     $params['signed_field_names'] = implode(',', array_keys($params));
@@ -53,6 +55,8 @@
 	<meta charset="UTF-8">
 	 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="vendor/jquery/jquery.min.js"></script>
 
 	<title>Payment Bill</title>
 	<style>
@@ -121,11 +125,8 @@
 	</style>
 </head>
 
-<?php 
-
-
-?>
 <body>
+
     <div class="container">
         <div class="title">
             <h1>Payment Bill</h1>
@@ -165,5 +166,22 @@
         </object>
          <script src="https://h.online-metrix.net/fp/check.js?org_id=k8vif92e&amp;session_id=<?=$merchant_id . $sid?>" type="text/javascript"></script>
     </div>
+
+    <!-- <script>
+        $(document).ready(function () { 
+            var getorderid = "<?php echo $_GET['orderid']; ?>";
+            //alert("user id : " + getorderid);       
+            setCookie(getorderid, 1);
+        });
+
+        function setCookie(orderid, ordertypeid) {
+            //var cookie = "orderid" + "=" + orderid + ";" + "ordertypeid" + "=" + ordertypeid;
+            document.cookie = "orderid = " + orderid;
+            document.cookie = "ordertypeid = " + ordertypeid;
+            //alert("seted");   
+        }
+
+	</script> -->
+
 </body>
 </html>
