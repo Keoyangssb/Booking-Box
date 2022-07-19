@@ -1,7 +1,6 @@
 <?php
     include "switchlan.php";
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +8,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Additional CSS Files -->
@@ -29,48 +27,78 @@
             <h2 class="text-center" style="font-family: Phetsarath OT; margin-top: -65px;"><?php echo $lang['aboutus'] ?></h2>
               &nbsp
               &nbsp
-              <button type="button" class="btn btn-success" id="btnAddItem" data-toggle="modal" data-target="#modal_EditAboutus" style="font-family: Phetsarath OT; height:35px; margin-top: -65px;"><?php echo $lang['edit'] ?></button>
+              <button type="button" class="btn btn-success" id="btnAddItem" data-toggle="modal" data-target="#modal_AddAboutus" style="font-family: Phetsarath OT; height:35px; margin-top: -65px;"><?php echo $lang['add'] ?></button>
            </div>
 
-            <div class="row">           
-              <div class="main-banner header-text" style="margin-top: -65px;">
-                <div class="container-fluid">
-                  <div class="owl-banner owl-carousel">
-                  <div class="item">
-                    <img src="images/{{getPic1}}" alt="">
-                  </div>
-                  <div class="item">
-                    <img src="images/{{getPic2}}" alt="">
-                  </div>
-                  <div class="item">
-                    <img src="images/{{getPic3}}" alt="">
-                  </div>
-                  <div class="item">
-                    <img src="images/{{getPic4}}" alt="">
-                  </div>
-                  <div class="item">
-                    <img src="images/{{getPic5}}" alt="">
-                  </div>
-                  <div class="item">
-                    <img src="images/{{getPic6}}" alt="">
-                  </div>
-                </div>
-                </div>
-              </div>
+
+    <section class="blog-posts grid-system">
+      <div class="container" ng-repeat="data in getdata">
+        <div class="row">
+          <div class="col-md-5">
+            <div>
+              <img src="images/aboutus/{{data.imagename}}" alt="" class="img-fluid wc-image">
             </div>
 
-          <div class="row">
+            <br>
+          </div>
+
+          <div class="col-md-7">
+            <div class="sidebar-item recent-posts">
+              <div class="sidebar-heading">
+                
+
+                  <h2 ng-click="ContentPage(data.itemid)" href="" ng-show="data.langid == 1" style="font-family: Phetsarath OT; text-align: left;">{{data.titlenamela}}</h2>
+                  <h2 ng-click="ContentPage(data.itemid)" href="" ng-show="data.langid == 2" style="font-family: Phetsarath OT; text-align: left;">{{data.titlenameen}}</h2>
+
+                </div>
+
+                <div class="content">
+                  <p ng-show="data.langid == 1" style="font-family: Phetsarath OT; text-align: left;">{{data.aboutdetailla}}
+                  <br>
+                  <a href="" data-toggle="modal" data-target="#edithotelmodal" Title="Update About Us..." style="font-family: Phetsarath OT;" ng-show="<?php echo $_SESSION['userid'] == 1 ? true : false ?>"><?php echo $lang['edit'] ?></a>
+                  <a ng-show="<?php echo $_SESSION['userid'] == 1 ? true : false ?>">  |  </a>
+                  <a href="" ng-click="DeleteHotel(data.itemid)" Title="Delete About Us..." style="font-family: Phetsarath OT;" ng-show="<?php echo $_SESSION['userid'] == 1 ? true : false ?>"><?php echo $lang['delete'] ?></a>
+                </p>
+
+                  <p ng-show="data.langid == 2" style="font-family: Phetsarath OT; text-align: left;">{{data.aboutdetailen}}
+                  <br>
+                  <a href="" data-toggle="modal" data-target="#edithotelmodal" Title="Update About Us..." style="font-family: Phetsarath OT;" ng-show="<?php echo $_SESSION['userid'] == 1 ? true : false ?>"><?php echo $lang['edit'] ?></a>
+                  <a ng-show="<?php echo $_SESSION['userid'] == 1 ? true : false ?>">  |  </a>
+                  <a href="" ng-click="DeleteHotel(data.itemid)" Title="Delete About Us..." style="font-family: Phetsarath OT;" ng-show="<?php echo $_SESSION['userid'] == 1 ? true : false ?>"><?php echo $lang['delete'] ?></a>
+
+                </p>
+
+
+                </div>
+
+              </div>
+
+              
+            </div>
+          </div>
+        </div>
+        
+        <br>
+                <br>
+
+
+      </div>
+    </section>
+
+
+          <!-- <div class="row">
             <div class="col-lg-12"  ng-repeat="data in getdata">
               <p ng-show="data.langid == 1" style="font-family: Phetsarath OT; color: black; font-size: large;">{{data.aboutdetailla}}</p>
               <p ng-show="data.langid == 2" style="font-family: Phetsarath OT; color: black; font-size: large;">{{data.aboutdetailen}}</p>
             </div>
-          </div>
+          </div> -->
     
-          <div class="modal fade" id="modal_EditAboutus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+          <div class="modal fade" id="modal_AddAboutus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel" style="font-family: Phetsarath OT;"><?php echo $lang['editaboutus'] ?></h5>
+                        <h5 class="modal-title" id="exampleModalLabel" style="font-family: Phetsarath OT;"><?php echo $lang['addaboutus'] ?></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -81,46 +109,36 @@
                             <form action="#" id="contact">
                               <div class="row">
                                   
+                              <div class="col-md-12">
+                                      <span style="font-family: Phetsarath OT;"><?php echo $lang['titlenamelao'] ?></span>
+                                          <input type="text" class="form-control" style="font-family: Phetsarath OT;" ng-model="ndata.titlenamela"> 
+                                      </div>
                                       <div class="col-md-12">
-                                      <span style="font-family: Phetsarath OT;"><?php echo $lang['aboutuslao'] ?></span>
+                                      <span style="font-family: Phetsarath OT;"><?php echo $lang['titlenameeng'] ?></span>
+                                          <input type="text" class="form-control" style="font-family: Phetsarath OT;" ng-model="ndata.titlenameen">
+                                      </div>
+
+                                      <div class="col-md-12">
+                                      <span style="font-family: Phetsarath OT;"><?php echo $lang['detailslao'] ?></span>
                                           <textarea class="form-control" style="font-family: Phetsarath OT;" ng-model="ndata.aboutdetailla"></textarea> 
                                       </div>
 
                                       <div class="col-md-12">
-                                      <span style="font-family: Phetsarath OT;"><?php echo $lang['aboutuseng'] ?></span>
+                                      <span style="font-family: Phetsarath OT;"><?php echo $lang['detailseng'] ?></span>
                                           <textarea class="form-control" style="font-family: Phetsarath OT;" ng-model="ndata.aboutdetailen"></textarea> 
                                       </div>
 
-                                      <div class="col-md-4">  
-                                        <input type="file" file-input="files" accept="image/*" onchange="angular.element(this).scope().uploadFile(this)"/>  
-                                    </div>
 
-                                    <table class="table table-bordered" ng-hide="ndata.images.length==0">
-                                      <thead>
-                                        <tr>
-                                          <th style="width: 0%; font-family: Phetsarath OT;" ng-hide="true">hide</th>
-                                 
-                                          <th style="width: 10%; font-family: Phetsarath OT;"><?php echo $lang['image'] ?></th>
-                                          <th style="width: 10%; font-family: Phetsarath OT;"><?php echo $lang['delete'] ?></th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <tr ng-repeat="image in ndata.images track by $index">
-                                        <td ng-hide="true"> 
-                                                              <a id="a_{{$index+1}}" class="btn-attachment" target="_blank">
-                                                              </a>
-                                          </td>
-                                         
-                                          <td ng-hide="image.imagename == ''"><img ng-src="/images/{{image.imagename}}" style="height: 100px; width: 100px;"></td>
-                                          <td ng-hide="image.imagename == ''">
-                                            <button type="button" class="trash_button" ng-click="DelImage($index)"
-                                                                            style="cursor: pointer;">
-                                                                            <i class="fa fa-trash"></i>
-                                                                        </button>
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
+                                      <div class="col-md-12"> 
+                                          <div class="col-md-4">  
+                                              <input type="file" file-input="files" accept="image/*" onchange="angular.element(this).scope().uploadFile(this)"/>  
+                                          </div>
+                                          <div>
+                                            <!-- <img src="ndata.imagename" alt="" class="img-fluid wc-image"> -->
+                                          </div>
+
+                                        </div>
+
 
                               </div>
 
@@ -157,7 +175,17 @@
 
  app.controller("controlaboutus", function($scope, $http){
 
-  $scope.uploadFile = function(element){
+  $scope.ndata = {
+            "aboutid": "",
+            "titlenamela": "",
+            "titlenameen": "",
+            "aboutdetailla": "",
+            "aboutdetailen": "",
+            "imagename": "",
+            "langid": ""
+      }
+
+      $scope.uploadFile = function(element){
            $scope.files = element.files;
            var form_data = new FormData();
            $scope.myFile = $scope.files[0];
@@ -171,40 +199,22 @@
               }).success(function(response){  
                 if(response != ""){
                   var nfilename = response.replace(/"([^"]+(?="))"/g, '$1');
-                  $scope.ndata.images.push({
-                    "imagename": nfilename,
-                   });
+                  
                 }
               }); 
            }
       }
+
  $scope.getdata = {
             "aboutid": "",
-            "aboutdetail": "",
-            "images": [{
-                "imagename": ""
-            }]
-      }
-
-  $scope.getdataimage = {
-            "imagename": ""
-  }
-
-  $scope.getPic1 = "";
-  $scope.getPic2 = "";
-  $scope.getPic3 = "";
-  $scope.getPic4 = "";
-  $scope.getPic5 = "";
-  $scope.getPic6 = "";
-
-  $scope.ndata = {
-            "aboutid": "",
+            "titlenamela": "",
+            "titlenameen": "",
             "aboutdetailla": "",
             "aboutdetailen": "",
-            "images": [{
-                "imagename": ""
-            }]
+            "imagename": "",
+            "langid": ""
       }
+
 
       $scope.selectdata = function(){  
         var sessionLangId = "<?php echo $_SESSION['langid']; ?>"; 
@@ -214,29 +224,9 @@
           headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
           }).success(function(data){
             $scope.getdata = data;  
-            $scope.ndata.aboutid = data[0].aboutid;
-            $scope.ndata.aboutdetailla = data[0].aboutdetailla;
-            $scope.ndata.aboutdetailen = data[0].aboutdetailen;
-            $scope.selectdataImage(1);
            });  
       }
 
-      $scope.selectdataImage = function(id){
-          $http({ method  : 'POST',
-          url :'pages/getaboutusimage.php',
-          data : {'myid': id},
-          headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
-          }).success(function(data){ 
-            $scope.getdataimage = data;
-            $scope.ndata.images = data;
-            $scope.getPic1 = data[0].imagename;
-            $scope.getPic2 = data[1].imagename;
-            $scope.getPic3 = data[2].imagename;
-            $scope.getPic4 = data[3].imagename;
-            $scope.getPic5 = data[4].imagename;
-            $scope.getPic6 = data[5].imagename;
-          });  
-        }
 
       $(document).ready(function () { 
 

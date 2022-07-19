@@ -7,14 +7,19 @@ if(isset($_POST)){
     */
     $response = $_POST;
 	$result = "";
+	$payment_status_id = 2;
+	$is_sale = 0;
+	$resMsg = "Hold Payment Successful.";
+
 	//print_r($response);
 
     /* 
         print example transaction details
     */
 
+	$str_transaction_type = $_POST['req_transaction_type'];
 	$strorder = $_POST['req_reference_number'];
-	
+
 	list($reference_number, $transaction_type) = explode(',',$strorder);
 
 	print_r($reference_number);
@@ -40,8 +45,16 @@ if(isset($_POST)){
 		print_r("update house.......");
 	}
 
+	if($str_transaction_type == "sale"){
+		$payment_status_id = 3;
+		$is_sale = 1;
+		$resMsg = "Payment Successful.";
+	}
+
 	$body = '{
-		"id": "'. $reference_number.'"
+		"id": "'. $reference_number.'",
+		"payment_status_id": "'. $payment_status_id.'",
+  		"is_sale": "'. $is_sale.'"
 	  }';
 
 	$ch = curl_init($updateUrl);
@@ -52,12 +65,6 @@ if(isset($_POST)){
 	curl_setopt($ch, CURLOPT_POST, true);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
 
-	//   $ch = curl_init();
-	//   curl_setopt($ch, CURLOPT_URL, $updateUrl);
-	//   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	//   curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
-	//   curl_setopt($ch, CURLOPT_POST, 1);
-	//   curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
 	  $result = curl_exec($ch);
 	  curl_close($ch);
 
@@ -84,19 +91,14 @@ if(isset($_POST)){
 	<body class="bg-dark">
 
 		<script>
-			//myFunction();
-			//let getorderid = getCookie("orderid");
-			//let getordertypeid = getCookie("ordertypeid");
 
 			let getresult = "<?php echo $res_message; ?>"; 
 
 			if(getresult == "success"){
 
-				//updateStatus(getorderid, getordertypeid);
-
 				sweetAlert(
 					{
-					title: "Payment Successful.",
+					title: "<?php echo $resMsg; ?>",
 					text: "Thank you.",
 					type: "success",
 					showConfirmButton: false
@@ -111,54 +113,6 @@ if(isset($_POST)){
 					},
 				);
 			}
-
-				function myFunction() {
-					const url = new URL(window.location.href);
-					const urlParams = new URLSearchParams(url.search);
-					if(urlParams == "" || urlParams == null){
-						url.searchParams.set('reason_code', '100');
-  						location.replace(url)
-					}
-				}
-
-				function getCookie(cname) {
-					let name = cname + "=";
-					let decodedCookie = decodeURIComponent(document.cookie);
-					let ca = decodedCookie.split(';');
-					for(let i = 0; i <ca.length; i++) {
-						let c = ca[i];
-						while (c.charAt(0) == ' ') {
-						c = c.substring(1);
-						}
-						if (c.indexOf(name) == 0) {
-						return c.substring(name.length, c.length);
-						}
-					}
-					return "";
-				}
-
-				function updateStatus(orderid, ordertypeid) {
-					
-					const data = { id: orderid };
-
-					fetch('http://150.95.81.50:8088/booking/hotel/payment/status', {
-					method: 'POST', // or 'PUT'
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(data),
-					})
-					.then(response => response.json())
-					.then(data => {
-					console.log('Success:', data);
-					})
-					.catch((error) => {
-					console.error('Error:', error);
-					});
-
-					alert("update order id " + getorderid + " complete ");
-
-				}
 
 		</script>
 		

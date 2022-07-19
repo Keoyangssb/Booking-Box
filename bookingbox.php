@@ -21,7 +21,7 @@
     $params['transaction_uuid'] = uniqid();
     $params['signed_date_time'] = gmdate("Y-m-d\TH:i:s\Z");
     $params['locale'] = 'en';
-    $params['transaction_type'] = 'authorization';
+    $params['transaction_type'] = $_GET['transaction_type']; //'sale' or 'authorization';
     $params['reference_number'] = $_GET['orderid'] . "," .$_GET['ordertypeid']; //(int)(rand(0, 999999));
     $params['currency'] = $_GET['currency'];
 
@@ -47,6 +47,13 @@
     $params['signed_field_names'] = implode(',', array_keys($params));
 
     $params['signature'] = signParams($params, $secret_key);
+
+    $str_payment_type = "";
+    if($_GET['transaction_type'] == "sale"){
+        $str_payment_type = "Make Payment";
+    }else{
+        $str_payment_type = "Make Hold Payment";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -141,6 +148,7 @@
                         <div>
                             <p>Full name: <?=$params['bill_to_forename']?> <?=$params['bill_to_surname']?></p>
                             <p>Tel: <?=$params['bill_to_phone']?></p>
+
                         </div>
                     </div>
                     <div class="amount">
@@ -155,7 +163,7 @@
                     }
                 ?>
                 <!-- end data required for submit form -->
-                <input class='btn-payment' type='submit' value='Make Payment'/>
+                <input class='btn-payment' type='submit' value='<?=$str_payment_type?>'/>
             </form>
         </div>
         <p style="background:url(https://h.online-metrix.net/fp/clear.png?org_id=k8vif92e&amp;session_id=<?=$merchant_id . $sid?>&amp;m=1)"></p>

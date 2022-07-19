@@ -1,6 +1,6 @@
 <?php  
 include('/var/www/html/config.php');
-$id = 1;
+$id = 0;
 $langid = 1;
 $data = json_decode(file_get_contents("php://input"), true); 
 if(count($data) > 0){
@@ -11,7 +11,12 @@ if(count($data) > 0){
  $output = array();  
  $query = '';
 
- $query = "SELECT aboutid,aboutdetailla,aboutdetailen,Others,'$langid' as langid FROM tblaboutus";
+ if($id > 0){
+    $query = "SELECT aboutid,titlenamela,titlenameen,aboutdetailla,aboutdetailen,Others,'$langid' as langid,imagename FROM tblaboutus where aboutid=" .$id;
+ }else{
+    $query = "SELECT aboutid,titlenamela,titlenameen,aboutdetailla,aboutdetailen,Others,'$langid' as langid,imagename FROM tblaboutus";
+ }
+
  $Dbobj = new DbConnection(); 
  $result = mysqli_query($Dbobj->getdbconnect(), $query);  
  while($row = mysqli_fetch_array($result))  

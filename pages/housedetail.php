@@ -307,7 +307,6 @@
         headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
         }) .success(function(data) {
             alert(data);  
-            //$scope.selectdata($scope.ndata.itemid);
             window.location.reload();
         });
       } 

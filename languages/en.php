@@ -32,7 +32,7 @@
 		"close" => "Close",
 		"imagesize" => "(Iamge size: Width 720 pexels and Height 480 pexels)",
 		"scanqrcode" => "Scan to download App",
-		"edit" => "Edit...",
+		"edit" => "Edit",
 		"edithotel" => "Edit Hotel",
 		"addguesthouse" => "Add Tourist Site",
 		"guesthousename" => "Tourist Site Name",
@@ -69,5 +69,11 @@
 		"partnerservice" => "Partner Service",
 		"addpartnerservice" => "Add Partner Service",
 		"news" => "News",
+		"addaboutus" => "Add Aboutus",
+		"titlenamelao" => "Title Name Lao",
+		"titlenameeng" => "Title Name English",
+		"addnews" => "Add News",
+		"editnews" => "Edit News",
+		"newsdetail" => "News Details",
 	);
 ?>

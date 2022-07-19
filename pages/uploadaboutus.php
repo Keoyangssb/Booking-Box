@@ -9,7 +9,7 @@ header('Content-Type: text/plain; charset=utf-8');
 
 	$newfilename   = uniqid() . "-" . time() . "." . $ext;
 
-	$targetDirectory = "/var/www/html/images"; 
+	$targetDirectory = "/var/www/html/images/aboutus"; 
 	$newFilepath = $targetDirectory . "/" . $newfilename;
 
 	if (!move_uploaded_file($filepath, $newFilepath)){
