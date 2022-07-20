@@ -1,47 +1,34 @@
 <?php
-include('/var/www/html/config.php'); 
-$total = 1;
-$data = json_decode(file_get_contents("php://input"), true); 
-if(count($data) > 0){
-   $aboutdetailla = $data["aboutdetailla"];
-   $aboutdetailen = $data["aboutdetailen"];
-   $Others = $data["Others"];
-   
-   $itemid = 1;
+include('/var/www/html/config.php');
+ $data = json_decode(file_get_contents("php://input"), true);  
+ if(count($data) > 0)  
+ {  
+      $itemid = 0;
+      $i = 0;
+      $query = "select max(aboutid) as xid from tblaboutus";
+      $Dbobj = new DbConnection(); 
+      $result = mysqli_query($Dbobj->getdbconnect(), $query);
+      if ($result->num_rows > 0) {
+          while($row = $result->fetch_assoc()) { 
+               $itemid = $row['xid'] + 1;
+          }
+       }
 
-   $imgs[] = $data['images'];
-   $values = array();
-   foreach($data['images'] as $item){
-        if($item['imagename'] != ''){
-             $values[] = "($itemid, '{$item['imagename']}')";
-             if($i == 0){
-                  $img = $item['imagename'];
-                  $i = $i + 1;
-             }
-        }
-   }
+      $itemnamela = $data['titlenamela'];
+      $itemnameen = $data['titlenameen'];
+      $detailslao = $data['aboutdetailla']; 
+      $detailseng = $data['aboutdetailen']; 
+      $img = $data['imagename']; 
+      $query = "";
 
-   $values = implode(", ", $values);
-
-   $query = "UPDATE tblaboutus SET aboutdetailla='$aboutdetailla',aboutdetailen='$aboutdetailen', Others='$Others' WHERE aboutid=1";  
-
-   $Dbobj = new DbConnection(); 
-   if(mysqli_query($Dbobj->getdbconnect(), $query))  
-   {
-      $query = "DELETE FROM tblaboutimg";
-      if(mysqli_query($Dbobj->getdbconnect(), $query)){
-          $query = "INSERT INTO tblaboutimg(aboutid, imagename) VALUES {$values}";
-          if(mysqli_query($Dbobj->getdbconnect(), $query)){
-              //echo 'Update data complete.'; 
-           }           
-      }
-      echo 'Update data complete.'; 
-   }  
-   else  
-   {  
-        echo 'Error';  
-   } 
-}else{
-   echo 'No data...';  
-}
-?> 
+      $query = "INSERT INTO tblaboutus(aboutid,titlenamela,titlenameen,aboutdetailla,aboutdetailen,Others,imagename) VALUES ($itemid, '$itemnamela','$itemnameen','$detailslao','$detailseng','', '$img')";  
+      if(mysqli_query($Dbobj->getdbconnect(), $query))  
+      {  
+        echo 'Save data complete.';  
+      }  
+      else  
+      {  
+           echo 'Error';  
+      }  
+ }  
+ ?> 
