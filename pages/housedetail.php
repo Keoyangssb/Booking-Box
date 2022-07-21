@@ -271,9 +271,7 @@
       }
 
       $scope.updateData = function() {
-        if (confirm("Do you want to update?") == false) {
-          return;                    
-        }
+        
         if($scope.ndata != null){
           if($scope.ndata.itemnamela == '' || $scope.ndata.itemnamela == undefined){
             alert('Please enter House name in Lao.');
@@ -291,16 +289,27 @@
             alert('Please enter details in English.');
             return;
           }
-          if($scope.ndata.images.length == 0 || $scope.ndata.images.length == 1){
-             alert('Please select image.');
-             return;  
-          }
+          var isValid = false;
+                    $scope.ndata.images.filter(function (getItem, index) {
+                        if (getItem.imagename != "" && getItem.imagename != null && getItem.imagename != 'undefined') {
+                            isValid = true;
+                        }
+                    });
+
+                    if(!isValid){
+                      alert('Please select Image.');
+                      return;
+                    } 
           
         }else{
           alert('Please enter data.');
           return;  
         }
 
+        if (confirm("Do you want to update?") == false) {
+          return;                    
+        }
+        
         $http({ method  : 'POST',
         url :'pages/updatehouse.php',
         data : $scope.ndata,

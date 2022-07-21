@@ -75,5 +75,7 @@
 		"addnews" => "Add News",
 		"editnews" => "Edit News",
 		"newsdetail" => "News Details",
+		"editcustomerservice" => "Edit Customer Service",
+		"editpartnerservice" => "Edit Partner Service",
 	);
 ?>

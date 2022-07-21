@@ -245,10 +245,18 @@ $(document).ready(function () {
                       alert('Please enter detais in English.');
                       return;
                     }   
-                    if($scope.ndata.images.length == 0 || $scope.ndata.images.length == 1){
-                      alert('Please select image.');
-                      return;  
-                    }
+                    var isValid = false;
+                    $scope.ndata.images.filter(function (getItem, index) {
+                        if (getItem.imagename != "" && getItem.imagename != null && getItem.imagename != 'undefined') {
+                            isValid = true;
+                        }
+                    });
+
+                    if(!isValid){
+                      alert('Please select Image.');
+                      return;
+                    } 
+                    
                     //save data
                     if (confirm("Do you want to save?") == false) {
                       return;                    
